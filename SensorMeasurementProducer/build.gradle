@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id "application"
+}
+
+group 'com.tfm.estaciones.sensor.measurement.producer'
+version '1.0-SNAPSHOT'
+
+ext {
+    javaMainClass = "com.tfm.sensor.producer.App"
+}
+
+application {
+    mainClassName = javaMainClass
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile group: 'org.apache.kafka', name: 'kafka-streams', version: '2.4.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.3'
+}
