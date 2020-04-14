@@ -14,3 +14,5 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 /SensorMeasurementsStream/.idea/
 /SensorMeasurementsStream/build/
+/SensorMeasurementConsumer/.idea/
+/SensorMeasurementConsumer/build/
