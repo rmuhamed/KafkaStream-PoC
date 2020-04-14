@@ -16,3 +16,5 @@ gradle-app.setting
 /SensorMeasurementsStream/build/
 /SensorMeasurementConsumer/.idea/
 /SensorMeasurementConsumer/build/
+/SensorMeasurementProducer/.idea/
+/SensorMeasurementProducer/build/
