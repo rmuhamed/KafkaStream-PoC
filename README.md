@@ -1,4 +1,4 @@
-# My Kafka stream poof of concept
+# My Kafka stream proof of concept
 Trying random things with Apache Kafka Stream 
 
 ## Introduction
