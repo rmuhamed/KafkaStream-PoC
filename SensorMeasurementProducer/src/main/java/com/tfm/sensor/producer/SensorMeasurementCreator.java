@@ -1,20 +1,25 @@
 package com.tfm.sensor.producer;
 
-import java.time.LocalDateTime;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class SensorMeasurementCreator {
 
-    static SensorMeasurement create(Integer regionId) {
+    static SensorMeasurement create(Integer sensorId) {
         SensorMeasurement sensorMeasurement = new SensorMeasurement();
 
-        Integer temp = ThreadLocalRandom.current().nextInt(0, 50);
+        Integer temp = ThreadLocalRandom.current().nextInt(0, 40);
 
-        sensorMeasurement.setRegionId("R"+regionId);
-        sensorMeasurement.setName("S"+regionId+sensorMeasurement.getRegionId());
+        sensorMeasurement.setTemperatureUnit("CELSIUS");
+        sensorMeasurement.setSensorName("Sensor"+sensorId);
+        sensorMeasurement.setSensorId(sensorId);
         sensorMeasurement.setTemperature(temp);
-        sensorMeasurement.setTimestamp(LocalDateTime.now().toString());
-        sensorMeasurement.setUnit(TemperatureUnit.CELSIUS);
+
+        Metadata metadata = new Metadata();
+        metadata.setGatewayId(1);
+        metadata.setRegionName("El valles occidental");
+        metadata.setTimestamp(Long.valueOf(System.currentTimeMillis()).intValue());
+
+        sensorMeasurement.setMetadata(metadata);
 
         return sensorMeasurement;
     }

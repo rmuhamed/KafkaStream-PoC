@@ -1,0 +1,11 @@
+{
+  "sensor_id": 1,
+  "sensor_name": "S1",
+  "temperature": 28,
+  "temperature_unit": "CELSIUS",
+  "metadata": {
+    "gateway_id": 1,
+    "region_name": "Valles Occidental",
+    "timestamp": 123456
+  }
+}

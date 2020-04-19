@@ -1,36 +1,29 @@
 package com.tfm.sensor.producer;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class SensorMeasurement {
-    private String regionId;
-    private String timestamp;
-    private String name;
+    private Integer sensorId;
+    private String sensorName;
     private Integer temperature;
-    private TemperatureUnit unit;
+    private String temperatureUnit;
+    private Metadata metadata;
 
-    SensorMeasurement() {}
-
-    public String getRegionId() {
-        return regionId;
+    public Integer getSensorId() {
+        return sensorId;
     }
 
-    public void setRegionId(String regionId) {
-        this.regionId = regionId;
+    public void setSensorId(Integer sensorId) {
+        this.sensorId = sensorId;
     }
 
-    public String getName() {
-        return name;
+    public String getSensorName() {
+        return sensorName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setSensorName(String sensorName) {
+        this.sensorName = sensorName;
     }
 
     public Integer getTemperature() {
@@ -41,11 +34,23 @@ public class SensorMeasurement {
         this.temperature = temperature;
     }
 
-    public TemperatureUnit getUnit() {
-        return unit;
+    public String getTemperatureUnit() {
+        return temperatureUnit;
     }
 
-    public void setUnit(TemperatureUnit unit) {
-        this.unit = unit;
+    public void setTemperatureUnit(String temperatureUnit) {
+        this.temperatureUnit = temperatureUnit;
+    }
+
+    public Metadata getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Metadata metadata) {
+        this.metadata = metadata;
+    }
+
+    public String serialize() throws JsonProcessingException {
+        return new ObjectMapper().writeValueAsString(this);
     }
 }

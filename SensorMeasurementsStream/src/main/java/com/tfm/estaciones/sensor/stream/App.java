@@ -1,6 +1,12 @@
 package com.tfm.estaciones.sensor.stream;
 
+import org.apache.kafka.common.serialization.Deserializer;
+import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.connect.json.JsonDeserializer;
+import org.apache.kafka.connect.json.JsonSchema;
+import org.apache.kafka.connect.json.JsonSerializer;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
@@ -8,6 +14,8 @@ import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.Produced;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
@@ -20,17 +28,8 @@ public class App {
 
         final StreamsBuilder builder = new StreamsBuilder();
 
-        SensorMeasurementDeserializer deserializer = new SensorMeasurementDeserializer();
-        SensorMeasurementSerializer serializer = new SensorMeasurementSerializer();
-
-        Consumed<Long, SensorMeasurement> consumed = Consumed.with(Serdes.Long(),
-                Serdes.serdeFrom(serializer, deserializer));
-
-        Produced<Long, SensorMeasurement> produced = Produced.with(Serdes.Long(),
-                Serdes.serdeFrom(serializer, deserializer));
-
-        builder.stream("sensor_input", consumed)
-                .to("sensor_output", produced);
+        builder.stream("sensor_input", Consumed.with(Serdes.Long(), Serdes.String()))
+                .to("sensor_output", Produced.with(Serdes.Long(), Serdes.String()));
 
         final Topology topology = builder.build();
         System.out.println(topology.describe());
